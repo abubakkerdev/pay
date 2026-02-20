@@ -47,7 +47,7 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        return_url: `https://onlinepayai.vercel.app/payment-success?amount=${amount}`,
       },
     });
 
@@ -80,7 +80,18 @@ const CheckoutPage = ({ amount }: { amount: number }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-2 rounded-md">
-      {clientSecret && <PaymentElement />}
+      {/* {clientSecret && <PaymentElement />} */}
+      {clientSecret &&   (
+        <PaymentElement
+        options={{
+          layout: "tabs", // shows wallet buttons as separate tabs
+          wallets: {
+            applePay: "auto",
+            googlePay: "auto",
+          },
+        }}
+      />
+      )}
 
       {errorMessage && <div>{errorMessage}</div>}
 

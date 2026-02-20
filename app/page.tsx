@@ -29,10 +29,25 @@ export default function Home() {
           mode: "payment",
           amount: convertToSubcurrency(amount),
           currency: "usd",
+          paymentMethodCreation: "manual", // remove this if present
+          wallets: {
+            applePay: "auto",
+            googlePay: "auto",
+          },
         }}
       >
         <CheckoutPage amount={amount} />
       </Elements>
+      {/* <Elements
+        stripe={stripePromise}
+        options={{
+          mode: "payment",
+          amount: convertToSubcurrency(amount),
+          currency: "usd",
+        }}
+      >
+        <CheckoutPage amount={amount} />
+      </Elements> */}
     </main>
   );
 }
